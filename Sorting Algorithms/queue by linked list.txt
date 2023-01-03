@@ -1,0 +1,83 @@
+public class LinkedQueues {
+
+     private static Node head;
+    private static int NumNodes;
+    
+        
+    class Node{
+        private Node next;
+        private Object data;
+        
+        public Node(Object dat){
+            data = dat;
+        }
+        
+        public Object getData(){
+            return data;
+        }
+        
+        
+        
+        }
+    
+    public void Enqueue(Object Adata){
+        Node temp = head;
+        head = new Node(Adata);
+        head.next = temp;
+        NumNodes++;
+        System.out.println("Enqueue :"+Adata);
+    }
+    
+    public void Dequeue(){
+    Node temp = head;
+    while(temp.next.next!=null){
+    temp = temp.next;
+    }
+    Object dat = temp.next.data;
+    temp.next = null;
+        System.out.println("Dequeue:"+dat);
+    }
+    
+    public void reverce(){
+    
+    Node pointer = head;
+    Node previous = null,current = null;
+    
+    while(pointer!=null){
+    current=pointer;
+    pointer = pointer.next;
+    
+    //revser the link
+    current.next = previous;
+    previous = current;
+    head =current;
+    }
+     }
+    
+    public void printQueue(){
+    this.reverce();
+    System.out.println("\nPrint Queue head to tail");
+    Node temp = head;
+    while(temp!=null){
+        System.out.println(temp.data);
+        temp= temp.next;
+    }
+    System.out.println("");
+    this.reverce();
+    }
+    
+    
+    
+    public static void main(String[] args) {
+        LinkedQueues lq = new LinkedQueues();
+        lq.Enqueue(20);
+        lq.Enqueue(50);
+        lq.Enqueue(70);
+        lq.Enqueue(100);
+        lq.printQueue();
+        lq.Dequeue();
+        lq.printQueue();
+        
+    }
+    
+}
